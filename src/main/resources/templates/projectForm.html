@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+  <div class="project-new">
+    <form method="post" th:action="@{/projects/new}">
+      <input type="text" name="title" placeholder="Title" ><br>
+      <input type="text" name="description" placeholder="Description"><br>
+      <input type="date" name="startDate" ><br>
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+</body>
+</html>

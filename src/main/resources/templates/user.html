@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<html>
+<head>
+    <title>User</title>
+</head>
+<body>
+    <h1>User Page</h1>
+    <p>Welcome, user!</p>
+    <div th:if="${session.message}" class="alert alert-success">
+        <p th:text="${session.message}"></p>
+    </div>
+    <form method="POST" th:action="@{/logout}">
+        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+        <button type="submit">Logout</button>
+    </form>
+
+</body>
+</html>
