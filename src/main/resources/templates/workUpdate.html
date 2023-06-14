@@ -12,7 +12,7 @@
 <form method="post" th:action="@{/projects/workupdate/{projectId}(projectId=${projectId})}">
   <div class="form-group">
     <input type="text" name="description" placeholder="Description">
-    <input type="text" class="form-control" name="time-range" id="time-range">
+    <input type="text" class="form-control" name="timeRange" id="time-range">
   </div>
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>
@@ -24,7 +24,7 @@
     time_24hr: false,
     dateFormat: "d-m-Y",
     mode: "range",
-    minDate: "today",
+    minDate: new Date().fp_incr(-30),
     maxDate: new Date().fp_incr(30), // 30 days from now
   });
 </script>
