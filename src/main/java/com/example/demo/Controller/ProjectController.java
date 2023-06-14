@@ -76,8 +76,7 @@ public class ProjectController {
 
     @PostMapping("/workupdate/{projectId}")
     public String addUpdateToProject(@ModelAttribute("projectUpdate") ProjectUpdate projectUpdate,
-                                     @PathVariable("projectId") String projectId
-                                     ) {
+                                     @PathVariable("projectId") String projectId) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         ObjectId objectId = new ObjectId(projectId);
         projectUpdate.setProjectId(objectId);
