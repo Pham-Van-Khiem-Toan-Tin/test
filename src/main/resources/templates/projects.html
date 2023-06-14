@@ -24,7 +24,10 @@
         <td th:text="${project.title}"></td>
         <td th:text="${project.description}"></td>
         <td th:text="${project.startDate}"></td>
-        <td><a th:href="@{/projects/addemployee/{id}(id=${project.id})}">addemployee</a> <button>updateProject</button></td>
+        <td>
+            <a th:href="@{/projects/addemployee/{id}(id=${project.id})}">addemployee</a>
+            <a th:href = "@{/projects/workupdate/{id}(id=${project.id})}">Update work</a>
+        </td>
     </tr>
     </tbody>
 </table>

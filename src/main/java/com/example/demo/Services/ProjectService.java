@@ -32,6 +32,13 @@ public class ProjectService {
         }
         projectRepository.save(project);
     }
+
+    public void addEmployeeToProject(String projectId, String employeeId) {
+        Project project = projectRepository.findById(projectId).orElse(null);
+        ObjectId objectId = new ObjectId(employeeId);
+        project.addToSet(objectId);
+        projectRepository.save(project);
+    }
     public void addEmployee(String projectId, String employeeId) {
        Project project = projectRepository.findById(projectId).orElse(null);
 
