@@ -14,6 +14,4 @@ public interface ProjectRepository extends MongoRepository<Project, String> {
     List<Project> findAll();
     Project save(Project project);
     Project findById(ObjectId projectId);
-
-    List<ProjectUpdate> findByProjectUpdateDateOfUpdate(String date);
 }

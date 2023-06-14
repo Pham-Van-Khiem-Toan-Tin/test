@@ -88,6 +88,13 @@ public class ProjectController {
         return "redirect:/projects";
     }
 
+    @GetMapping("/workupdate/viewByMonth")
+    public String viewByMonth(Model model) {
+        List<Project> foundProjects = projectService.getAllProjectsUpdatedByMonth();
+        model.addAttribute("projects", foundProjects);
+        return "workUpdateDetails";
+    }
+
     private String getCurrentDate() {
         LocalDate currentDate = LocalDate.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
