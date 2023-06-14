@@ -5,7 +5,6 @@ import com.example.demo.Model.Project;
 import com.example.demo.Model.ProjectUpdate;
 import com.example.demo.Services.EmployeeService;
 import com.example.demo.Services.ProjectService;
-import com.example.demo.Services.ProjectUpdateService;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -25,9 +24,6 @@ public class ProjectController {
     ProjectService projectService;
     @Autowired
     EmployeeService employeeService;
-
-    @Autowired
-    ProjectUpdateService projectUpdateService;
     @GetMapping
     public String getAllProjects(Model model) {
         List<Project> projects = projectService.getAllProject();
@@ -55,10 +51,10 @@ public class ProjectController {
         return "redirect:/projects";
     }
     @GetMapping("/addemployee/{projectId}")
-    public String addEmployeeForm(Model model, @PathVariable String id) {
+    public String addEmployeeForm(Model model, @PathVariable String projectId) {
         List<Employee> employees = employeeService.findAllEmployees();
         model.addAttribute("employees", employees);
-        model.addAttribute("projectId", id);
+        model.addAttribute("projectId", projectId);
         return "addEmployee";
     }
     @PostMapping("/addemployee/{projectId}")
@@ -87,7 +83,8 @@ public class ProjectController {
         projectUpdate.setTimeRange(timeRange);
         projectUpdate.setDateOfUpdate(getCurrentDate());
         projectUpdate.setUpdaterName(employeeService.findByEmail(authentication.getName()).getName());
-        projectUpdateService.addToProject(projectUpdate);
+        System.out.println(projectUpdate);
+        projectService.addWorkUpdates(projectUpdate);
         return "redirect:/projects";
     }
 

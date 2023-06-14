@@ -3,14 +3,9 @@ package com.example.demo.Model;
 import lombok.Data;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.format.annotation.DateTimeFormat;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashSet;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -30,4 +25,11 @@ public class Project {
     public void addToEmployeeSet(ObjectId employeeId) {
         this.employee_id.add(employeeId);
     }
+
+    public void addToWorkUpdates(ProjectUpdate projectUpdate) {
+        if (this.workUpdates == null) workUpdates = new ArrayList<ProjectUpdate>();
+        this.workUpdates.add(projectUpdate);
+    }
+
+
 }
