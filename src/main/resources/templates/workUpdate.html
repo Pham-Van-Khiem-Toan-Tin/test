@@ -18,14 +18,18 @@
 </form>
 </body>
 
-<script>
+<script th:inline="javascript">
+  var minTimeUpdate = /*[[${minTimeUpdate}]]*/ "";
+  var timeStartArr = minTimeUpdate.split("-"); // Tách chuỗi thành mảng ["01", "06", "2023"]
+  var timeStart = new Date(timeStartArr[2], timeStartArr[1] - 1, timeStartArr[0]); // Đảo ngược định dạng ngày và tạo đối tượng Date
+  console.log({time: minTimeUpdate});
   flatpickr("#time-range", {
-    enableTime: true,
+    enableTime: false,
     time_24hr: false,
     dateFormat: "d-m-Y",
     mode: "range",
-    minDate: new Date().fp_incr(-30),
-    maxDate: new Date().fp_incr(30), // 30 days from now
+    minDate: timeStart,
+    maxDate: timeStart.fp_incr(30), // 30 days from now
   });
 </script>
 </html>

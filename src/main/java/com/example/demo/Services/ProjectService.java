@@ -20,7 +20,14 @@ public class ProjectService {
         return projectRepository
                 .findAll();
     }
+    public Project findByProjectId(String projectId) {
+        return projectRepository.findById(projectId).orElse(null);
+    }
     public Project createProject(Project project) {
+        String startDate = project.getStartDate();
+        String[] dateArr = startDate.split("-");
+        String newStartDateFormat = dateArr[2] + "-" + dateArr[1] + "-" + dateArr[0];
+        project.setStartDate(newStartDateFormat);
         return projectRepository.save(project);
     }
     public void updateProject(Project project) {

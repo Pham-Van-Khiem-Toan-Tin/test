@@ -43,7 +43,8 @@ public class ProjectController {
     @GetMapping("/update")
     public String updateProjectForm(Model model) {
         model.addAttribute("projectUpdate", new Project());
-        return "updateProject";
+        return "updateProje" +
+                "ct";
     }
     @PostMapping("/update")
     public String updateProject(@ModelAttribute("projectUpdate") Project project) {
@@ -67,6 +68,9 @@ public class ProjectController {
     public String serveUpdateForm(Model model, @PathVariable("projectId") String projectId) {
         model.addAttribute("projectUpdate", new ProjectUpdate());
         model.addAttribute("projectId", projectId);
+        Project project = projectService.findByProjectId(projectId);
+        String minTimeUpdate = project.getStartDate();
+        model.addAttribute("minTimeUpdate", minTimeUpdate);
         return "workUpdate";
     }
 
