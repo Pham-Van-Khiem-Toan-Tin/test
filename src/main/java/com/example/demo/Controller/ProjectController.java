@@ -77,11 +77,13 @@ public class ProjectController {
     @PostMapping("/workupdate/{projectId}")
     public String addUpdateToProject(@ModelAttribute("projectUpdate") ProjectUpdate projectUpdate,
                                      @PathVariable("projectId") String projectId,
-                                     @RequestParam("time-range") String timeRange) {
+                                     @RequestParam("time-range") String timeRange,
+                                     @RequestParam("description") String description) {
         timeRange = timeRange.replace(" to ", " - ");
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         ObjectId objectId = new ObjectId(projectId);
         projectUpdate.setProjectId(objectId);
+        projectUpdate.setDescription(description);
         projectUpdate.setTimeRange(timeRange);
         projectUpdate.setDateOfUpdate(getCurrentDate());
         projectUpdate.setUpdaterName(employeeService.findByEmail(authentication.getName()).getName());

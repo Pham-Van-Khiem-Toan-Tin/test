@@ -36,7 +36,7 @@ public class ProjectService {
     public void addEmployeeToProject(String projectId, String employeeId) {
         Project project = projectRepository.findById(projectId).orElse(null);
         ObjectId objectId = new ObjectId(employeeId);
-        project.addToSet(objectId);
+        project.addToEmployeeSet(objectId);
         projectRepository.save(project);
     }
     public void addEmployee(String projectId, String employeeId) {

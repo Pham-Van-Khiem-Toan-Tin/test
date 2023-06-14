@@ -11,7 +11,7 @@
 <h1>Adding employees to project</h1>
 <form method="post" th:action="@{/projects/workupdate/{projectId}(projectId=${projectId})}">
   <div class="form-group">
-    <label for="time-range">Time Range:</label>
+    <input type="text" name="description" placeholder="Description">
     <input type="text" class="form-control" name="time-range" id="time-range">
   </div>
   <button type="submit" class="btn btn-primary">Submit</button>
