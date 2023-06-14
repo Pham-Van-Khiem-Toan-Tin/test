@@ -8,12 +8,9 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import java.util.Date;
 
 
-@Document(collection = "updates")
+@Document
 @Data
 public class ProjectUpdate {
-    @Id
-    private String id;
-
     private ObjectId projectId;
     private String updaterName;
     private String description;

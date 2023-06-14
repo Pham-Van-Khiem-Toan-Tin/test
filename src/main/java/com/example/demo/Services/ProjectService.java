@@ -1,6 +1,7 @@
 package com.example.demo.Services;
 
 import com.example.demo.Model.Project;
+import com.example.demo.Model.ProjectUpdate;
 import com.example.demo.Repository.ProjectRepository;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,6 +40,13 @@ public class ProjectService {
         project.addToEmployeeSet(objectId);
         projectRepository.save(project);
     }
+
+    public void addWorkUpdates(ProjectUpdate projectUpdate) {
+        Project update = projectRepository.findById(projectUpdate.getProjectId());
+        update.addToWorkUpdates(projectUpdate);
+        projectRepository.save(update);
+    }
+
     public void addEmployee(String projectId, String employeeId) {
        Project project = projectRepository.findById(projectId).orElse(null);
 
