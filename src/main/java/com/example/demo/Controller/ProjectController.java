@@ -43,7 +43,8 @@ public class ProjectController {
     @GetMapping("/update")
     public String updateProjectForm(Model model) {
         model.addAttribute("projectUpdate", new Project());
-        return "updateProject";
+        return "updateProje" +
+                "ct";
     }
     @PostMapping("/update")
     public String updateProject(@ModelAttribute("projectUpdate") Project project) {
@@ -67,20 +68,20 @@ public class ProjectController {
     public String serveUpdateForm(Model model, @PathVariable("projectId") String projectId) {
         model.addAttribute("projectUpdate", new ProjectUpdate());
         model.addAttribute("projectId", projectId);
+        Project project = projectService.findByProjectId(projectId);
+        String minTimeUpdate = project.getStartDate();
+        model.addAttribute("minTimeUpdate", minTimeUpdate);
         return "workUpdate";
     }
 
     @PostMapping("/workupdate/{projectId}")
     public String addUpdateToProject(@ModelAttribute("projectUpdate") ProjectUpdate projectUpdate,
-                                     @PathVariable("projectId") String projectId,
-                                     @RequestParam("time-range") String timeRange,
-                                     @RequestParam("description") String description) {
-        timeRange = timeRange.replace(" to ", " - ");
+                                     @PathVariable("projectId") String projectId
+                                     ) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         ObjectId objectId = new ObjectId(projectId);
         projectUpdate.setProjectId(objectId);
-        projectUpdate.setDescription(description);
-        projectUpdate.setTimeRange(timeRange);
+        projectUpdate.setTimeRange(projectUpdate.getTimeRange().replace("to", "-"));
         projectUpdate.setDateOfUpdate(getCurrentDate());
         projectUpdate.setUpdaterName(employeeService.findByEmail(authentication.getName()).getName());
         System.out.println(projectUpdate);
