@@ -7,9 +7,8 @@ import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Optional;
+import java.time.LocalDate;
+import java.util.*;
 
 @Service
 public class ProjectService {
@@ -68,6 +67,27 @@ public class ProjectService {
        }
         projectRepository.save(project);
 
+    }
+
+    public List<Project> getAllProjectsUpdatedByMonth() {
+        LocalDate currDate = LocalDate.now();
+        int currMonth = currDate.getMonthValue();
+
+        List<Project> allProjects = projectRepository.findAll();
+        List<Project> foundProjects = new ArrayList<>();
+        for (int i = 0; i < allProjects.size(); ++i) {
+            Project currentProject = allProjects.get(i);
+            if (currentProject.getWorkUpdates() == null) continue;
+            for (int j = 0; j < currentProject.getWorkUpdates().size(); ++j) {
+                ProjectUpdate currProjectupdate = currentProject.getWorkUpdates().get(j);
+                int updateMonth = currProjectupdate.returnUpdateMonth();
+                if (updateMonth == currMonth) {
+                    foundProjects.add(currentProject);
+                    break;
+                }
+            }
+        }
+        return foundProjects;
     }
     public void deleteProject(String id) {
         projectRepository.deleteById(id);

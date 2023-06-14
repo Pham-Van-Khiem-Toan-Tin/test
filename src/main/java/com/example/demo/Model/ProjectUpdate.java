@@ -16,4 +16,14 @@ public class ProjectUpdate {
     private String description;
     private String timeRange;
     private String dateOfUpdate;
+
+    public int returnUpdateMonth() {
+        String[] splittedDate = dateOfUpdate.split("/");
+        return Integer.parseInt(splittedDate[1]);
+    }
+
+    @Override
+    public String toString() {
+        return "[" + timeRange + "] " + description;
+    }
 }
