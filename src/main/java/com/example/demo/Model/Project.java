@@ -11,6 +11,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Data
@@ -24,8 +25,9 @@ public class Project {
     private String startDate;
 //    private Date endDate;
     private Set<ObjectId> employee_id;
+    private List<ProjectUpdate> workUpdates;
 
-    public void addToSet(ObjectId employeeId) {
+    public void addToEmployeeSet(ObjectId employeeId) {
         this.employee_id.add(employeeId);
     }
 }
