@@ -26,8 +26,7 @@ public class ExcelController {
         String timestamp = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
 
         // Tạo đường dẫn tới tệp Excel với tên tệp duy nhất
-        String filePath = "C:/demo/file_" + timestamp + ".xlsx";
-
+        String filePath = "C:/demo/excel_" + timestamp + ".xlsx";
         // Kiểm tra xem tệp đã tồn tại hay chưa
         File file = new File(filePath);
         boolean fileExists = file.exists();
@@ -48,7 +47,7 @@ public class ExcelController {
         }
 
         // Tạo một trang tính trong workbook
-        Sheet sheet = workbook.createSheet("Data1");
+        Sheet sheet = workbook.createSheet("Data");
 
         // Tạo dữ liệu mẫu
         String[] columnHeaders  = {"Name", "Email", "Phone"};
