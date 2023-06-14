@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<!-- Include Flatpickr stylesheet and JavaScript -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<body>
+<h1>Adding employees to project</h1>
+<form method="post" th:action="@{/projects/workupdate/{projectId}(projectId=${projectId})}">
+  <div class="form-group">
+    <label for="time-range">Time Range:</label>
+    <input type="text" class="form-control" name="time-range" id="time-range">
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+</body>
+
+<script>
+  flatpickr("#time-range", {
+    enableTime: true,
+    time_24hr: false,
+    dateFormat: "d-m-Y",
+    mode: "range",
+    minDate: "today",
+    maxDate: new Date().fp_incr(30), // 30 days from now
+  });
+</script>
+</html>

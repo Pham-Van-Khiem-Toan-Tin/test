@@ -24,4 +24,8 @@ public class Project {
     private String startDate;
 //    private Date endDate;
     private Set<ObjectId> employee_id;
+
+    public void addToSet(ObjectId employeeId) {
+        this.employee_id.add(employeeId);
+    }
 }
